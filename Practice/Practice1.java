@@ -66,3 +66,17 @@ class Practice3{
     
         
 }
+class Practice4{
+    public static void main(String[] args) {
+        String a = "a";
+        String b = "a";
+        // System.out.println(a==b);
+        Scanner y = new Scanner(System.in);
+        System.out.println("Enter 1st word");
+        a = y.nextLine();
+        System.out.println("Enter 2nd word");
+        b= y.nextLine();
+        System.out.println(a.equals(b));
+        System.out.println();
+    }
+}
