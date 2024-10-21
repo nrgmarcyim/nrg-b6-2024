@@ -2,6 +2,8 @@ package Practice;
 
 import java.util.*;
 
+import chapter4.MethodsLesson;
+
 public class Practice1 {
     
     public static void main(String[] args) {
@@ -78,5 +80,45 @@ class Practice4{
         b= y.nextLine();
         System.out.println(a.equals(b));
         System.out.println();
+    }
+}
+class Practice5{
+    public static void main(String[] args) {
+        MethodsLesson ml2 = new MethodsLesson();
+        // System.out.println(ml2.sum(100, 900));
+    }
+}
+class Practice6{
+//     Input: nums = [3,2,2,3], val = 3
+//     Output: 2, nums = [2,2,_,_]
+    int removeElement(int[] nums,int val){
+        // what?
+        return 0;
+    }
+    public static void main(String[] args) {
+        Practice6 p6 = new Practice6();
+        int [] nums = {3,2,2,3};
+        p6.removeElement(nums, 3);
+    }
+}
+class Practice7{
+    float getGradeAverage(float... grades){
+        float sum = 0;
+        for(float grade:grades)
+            sum+=grade;
+        return sum/grades.length;
+        
+    }
+    String threeNumbers(int a,int b,int c){
+        ArrayList nums = new ArrayList<>();
+        nums.add(a);nums.add(b);nums.add(c);
+        return ((Integer.compare(a, b))==0 && (Integer.compare(b, c)==0))?"All numbers are equal":"the largest intger is  "+Collections.max(nums); 
+
+    }
+    public static void main(String[] args) {
+        Practice7 p7 = new Practice7();
+        float grades[] = {90,89,87,91,78,85,81};
+        System.out.println(p7.getGradeAverage(grades));
+        System.out.println(p7.threeNumbers(3,3,3));
     }
 }
