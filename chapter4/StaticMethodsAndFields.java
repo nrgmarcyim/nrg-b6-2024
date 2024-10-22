@@ -1,4 +1,8 @@
 package chapter4;
+import static java.util.Arrays.asList;
+import static java.lang.Math.*;
+
+import java.util.Arrays;
 
 public class StaticMethodsAndFields {
     static int sCounter;
@@ -23,6 +27,8 @@ public class StaticMethodsAndFields {
         System.out.println(smf1.counter+","+smf1.sCounter);
         System.out.println(smf2.counter+","+smf2.sCounter);
         System.out.println(smf3.counter+","+smf3.sCounter);
+        smf2 = null;
+        System.out.println("smf2 is null: sCounter:"+smf2.sCounter);
         smf1.hello2();
         hello();
         Food f1 = new Food();
@@ -37,21 +43,46 @@ public class StaticMethodsAndFields {
         System.out.println(f2);
         System.out.println(f3);
         System.out.println(f4);
-        System.out.println("Total price is: P"+f2.subTotal(f1,f2,f3,f4,f4));
+        System.out.println("Total price is: P"+Food.subTotal(f1,f2,f3,f4,f4));
     }
     
 }
 class Food{
     String name;
     int price;
-    public String toString(){
-        return "Name: "+name+"\nPrice: P"+price;
+
+    int getPrice(){
+        return addTax(this.price);
     }
-    public int subTotal(Food... Foods){
+    int addTax(int price){
+        return (int)(price+(price*.10));
+    }
+    public String toString(){
+        return "Name: "+name+"\nPrice: P"+getPrice();
+    }
+    public static int subTotal(Food... Foods){
         int total = 0;
         for(Food food:Foods){
-            total+= food.price;
+            total+= food.getPrice();
         }
         return total;
     }
+}
+
+class StaticSample2{
+        private String name = "Static class";
+        public static void first() { }
+        public static void second() { }
+        public static int add(int a,int b){
+            return addExact(a, b);
+        }
+        public void third() { System.out.println(name); }
+        public static void main(String args[]) {
+            first();
+            second();
+            StaticSample2.first();
+            asList();
+            System.out.println(add(10, 21));
+            // third(); // DOES NOT COMPILE
+        } 
 }
