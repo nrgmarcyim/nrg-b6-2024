@@ -16,6 +16,10 @@ public class ConstructorsLesson {
       System.out.println(l1); 
       Student s1 = new Student("Elsa", "Snow", "Legazpi City", 12, 5);     
       System.out.println(s1);
+      ImmutableSwan ImSwan1 = new ImmutableSwan(10);
+      System.out.println(ImSwan1.getNumberEggs());
+      ImSwan1 = new ImmutableSwan(5);
+      System.out.println(ImSwan1.getNumberEggs());
    }
     
 }
@@ -99,3 +103,11 @@ class Student{
          "}";
    }
 }
+class ImmutableSwan { 
+   private int numberEggs;
+   public ImmutableSwan(int numberEggs) {
+      this.numberEggs = numberEggs; 
+   }
+   public int getNumberEggs() {
+      return numberEggs; } 
+   }
