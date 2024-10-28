@@ -1,10 +1,11 @@
 package chapter4;
 
 import java.util.*;
+import java.util.function.*;
 
 public class LambdaLesson {
 
-    static void printAnimals(List<Animal> animals,CheckTrait checker){
+    static void printAnimals(List<Animal> animals, Predicate<Animal> checker){
         for(Animal animal:animals){
             if(checker.test(animal)){
                 System.out.println(animal+",");
@@ -39,7 +40,7 @@ public class LambdaLesson {
         System.out.print("Enter species name: ");
         String tosearch = search.nextLine();
         printAnimals(animals, a->a.toString().equalsIgnoreCase(tosearch));
-
+        printAnimals(animals,(Animal a)->{ return a.toString().equalsIgnoreCase(tosearch);});
         
         
     }
@@ -68,10 +69,10 @@ class Animal{
     
    
 }
-interface CheckTrait {
-    // a -> a.canHop()
-    boolean test(Animal a);
-    } 
+// interface CheckTrait {
+//     // a -> a.canHop()
+//     boolean test(Animal a);
+//     } 
 
 // class CheckIfHopper implements CheckTrait {
 //     public boolean test(Animal a) {
@@ -81,3 +82,45 @@ interface CheckTrait {
 //     public boolean test(Animal a) {
 //         return a.canSwim(); }
 // }
+class Bunny{
+    public static void main(String[] args) {
+        
+        List<String> bunnies = new ArrayList<>();
+        bunnies.add("long ear");
+        bunnies.add("floppy");
+        bunnies.add("hoppy");
+        System.out.println(bunnies);
+        // [long ear, floppy, hoppy]
+        bunnies.removeIf(s -> s.charAt(0) !='h');
+        
+        System.out.println(bunnies);
+        // [hoppy]
+    }
+    
+}
+class Sum{
+    static List<Integer> filteredNumber(int[] nums,Predicate<Integer> condition){
+        List<Integer> result= new ArrayList<>();
+            for(int num:nums){
+                if(condition.test(num))
+                result.add(num);
+            }
+            return result; 
+        }
+
+        
+    
+    public static void main(String[] args) {
+        int[] numss={1,2,3,4,5};
+        Predicate<Integer> oddnum = n->n%2==1;
+        SumOfAll sumOfAll = (int[] nums)-> { int total=0;  for(int num:nums) total+=num; return total; };
+        System.out.println(sumOfAll.sum(numss));
+        System.out.println(filteredNumber(numss, oddnum));
+        
+
+    }
+    
+}
+interface SumOfAll{
+    int sum(int[] i);
+}
