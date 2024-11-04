@@ -19,6 +19,9 @@ public class InheritanceLesson {
 
 class Mammal extends Animal{
    int numOfMammaryGland;
+   void getName(){
+        System.out.println(super.name);
+   }
    Mammal(String name,int age,int numOfMammaryGland){
     super(name, age);
     this.numOfMammaryGland = numOfMammaryGland;
